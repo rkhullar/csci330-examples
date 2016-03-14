@@ -5,27 +5,43 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <pthread.h>  // POSIX Thread
+#include <semaphore.h>
 
-#define LIMIT 10000
+#define THREAD_LOOP 150
+#define MAIN_LOOP 100
 
+// thread function
 void *doit(void *arg)
 {
-  int i;
-  while(i < LIMIT)
+  int i = 0;
+  while(i < THREAD_LOOP)
   {
-    printf("hello\n");
+    printf("thread\n");
+    usleep(1);
     i++;
   }
   return 0;
 }
 
-int main(int argc, char **argv)
+int main()
 {
-  pthread_t t;
-  printf("creating thread\n");
-  pthread_create(&t, NULL, doit, "hello");
-  printf("joining thread\n");
-  pthread_join(t, NULL);
+  // create the thread
+  pthread_t pth;
+  pthread_create(&pth, NULL, doit, 0);
+
+  int i = 0;
+  while(i < MAIN_LOOP)
+  {
+    printf("main\n");
+    usleep(1);
+    i++;
+  }
+
+  // join thread
+  pthread_join(pth, NULL);
   return 0;
 }
