@@ -1,10 +1,11 @@
 # @author:  Rajan Khullar
-# @created: 03/13/16
-# @updated: 03/13/16
+# @created: 03/14/16
+# @updated: 03/14/16
 
 CC      = gcc
-CFLAGS  = -g -Wall
-SOURCE	= target.c
+CFLAGS  = -g -Wall -std=c11
+SOURCES	= target.c
+OBJECTS = target.o
 EXEC    = target
 
 rebuild: clean compile
@@ -15,7 +16,8 @@ clean:
 	@rm -rf *.gch
 
 compile $(SOURCES):
-	$(CC) $(CFLAGS) $(SOURCE) -o $(EXEC)
+	$(CC) $(CFLAGS) -c target.c
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC)
 
 test: rebuild
 	@$(EXEC)
