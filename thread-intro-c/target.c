@@ -6,42 +6,42 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
-#include <pthread.h>  // POSIX Thread
+#include <pthread.h>	// POSIX Thread
 #include <semaphore.h>
 
-#define THREAD_LOOP 150
-#define MAIN_LOOP 100
+#define THREAD_LOOP	10
+#define MAIN_LOOP	8
+#define SECOND		1000000
 
 // thread function
 void *doit(void *arg)
 {
-  int i = 0;
-  while(i < THREAD_LOOP)
-  {
-    printf("thread\n");
-    usleep(1);
-    i++;
-  }
-  return 0;
+	int i = 0;
+	while(i < THREAD_LOOP)
+	{
+		printf("thread\n");
+		usleep(rand() % SECOND);
+		i++;
+	}
+	return 0;
 }
 
 int main()
 {
-  // create the thread
-  pthread_t pth;
-  pthread_create(&pth, NULL, doit, 0);
+	// create the thread
+	pthread_t pth;
+	pthread_create(&pth, NULL, doit, 0);
 
-  int i = 0;
-  while(i < MAIN_LOOP)
-  {
-    printf("main\n");
-    usleep(1);
-    i++;
-  }
+	int i = 0;
+	while(i < MAIN_LOOP)
+	{
+		printf("main\n");
+		usleep(rand() % SECOND);
+		i++;
+	}
 
-  // join thread
-  pthread_join(pth, NULL);
-  return 0;
+	// join thread
+	pthread_join(pth, NULL);
+	return 0;
 }
