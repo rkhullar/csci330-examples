@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	if(argc < 3)
 	{
 		printf("missing parameters\n");
-		exit(0);
+		exit(1);
 	}
 
 	// pass args into msg and n
