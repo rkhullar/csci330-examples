@@ -4,7 +4,7 @@
 
 CC      = gcc
 CFLAGS  = -g -Wall -std=c11
-LIBS		= -lpthread
+LIBS	= -lpthread
 SOURCES	= target.c
 OBJECTS = target.o
 EXEC    = target
