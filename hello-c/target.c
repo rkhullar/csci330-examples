@@ -22,8 +22,7 @@ int main(int argc, char **argv)
 	int n = atoi(argv[2]);
 
 	// print msg n times
-	int i;
-	for(i = 0; i < n; i++)
+	for(int i = 0; i < n; i++)
 		printf("%s\n", msg);
 
 	return 0;

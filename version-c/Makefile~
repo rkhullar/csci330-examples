@@ -16,7 +16,7 @@ clean:
 	@rm -rf *.gch
 
 compile $(SOURCES):
-	$(CC) $(CFLAGS) -c target.c -o target.o
+	$(CC) $(CFLAGS) -c target.c
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC)
 
 test: rebuild
